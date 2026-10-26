@@ -30,7 +30,7 @@ export function SiteHeader() {
         <div className="mx-auto flex h-[76px] max-w-7xl items-center justify-between gap-5 px-5 sm:px-8">
           <Link aria-label="All Inclusive Construction & Building home" className="group flex min-w-0 items-center gap-3 no-underline" href="/">
             <span className="grid h-11 w-11 shrink-0 place-items-center border border-forest text-[13px] font-semibold tracking-[-0.08em] text-forest transition group-hover:bg-forest group-hover:text-paper" aria-hidden="true">
-              AI<span className="ml-0.5 text-brass">.</span>
+              <span>AI<span className="ml-0.5 text-brass">.</span></span>
             </span>
             <span className="min-w-0">
               <span className="block whitespace-nowrap text-[12px] font-semibold uppercase tracking-[0.13em] text-ink sm:text-[13px]">All Inclusive</span>

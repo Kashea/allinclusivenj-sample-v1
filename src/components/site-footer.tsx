@@ -9,7 +9,7 @@ export function SiteFooter() {
         <div className="grid gap-12 border-b border-white/15 pb-12 md:grid-cols-[1.15fr_0.75fr_0.75fr_1fr] md:gap-8">
           <div className="max-w-xs">
             <Link aria-label={`${siteInfo.name} home`} className="inline-flex items-center gap-3 text-white no-underline" href="/">
-              <span aria-hidden="true" className="grid h-11 w-11 place-items-center border border-white/55 text-sm font-semibold tracking-[-0.08em]">AI<span className="ml-0.5 text-brass">.</span></span>
+              <span aria-hidden="true" className="grid h-11 w-11 place-items-center border border-white/55 text-sm font-semibold tracking-[-0.08em]"><span>AI<span className="ml-0.5 text-brass">.</span></span></span>
               <span>
                 <span className="block text-[12px] font-semibold uppercase tracking-[0.13em]">All Inclusive</span>
                 <span className="mt-1 block text-[9px] uppercase tracking-[0.18em] text-white/60">Construction &amp; Building</span>
