@@ -1,0 +1,235 @@
+project:
+  name: "All Inclusive Construction & Building"
+  source_site: "https://allinclusivenj.com"
+  purpose: "Rebuild the residential remodeling and construction marketing site with Next.js and Sanity."
+  status: "research-backed implementation blueprint"
+  research_note: "Sitemap and public pages were reviewed; see docs/source-audit.md for source URLs, competitor notes, caveats, and content corrections."
+  business_facts:
+    public_name: "All Inclusive Construction & Building"
+    legal_name_from_structured_data: "All Inclusive Construction and Building LLC"
+    headquarters: "Branchburg, New Jersey"
+    primary_service_region: "Somerset County and nearby Central New Jersey communities"
+    phone: "+1-732-484-9008"
+    email: "allinclusivenj@gmail.com"
+    nj_registration: "13VH09398200"
+    pa_registration: "PA182975"
+    insurance_claim: "The source site states the business is fully insured in NJ and PA; reconfirm before launch."
+    verified_positioning:
+      - "Woman-owned business led by Geraldine Smith"
+      - "20+ years of general contracting experience"
+      - "Residential kitchens, bathrooms, additions, decks, porches, and broader remodeling work"
+      - "Awards and industry participation described on the source site"
+
+research:
+  source_sitemaps:
+    index: "https://allinclusivenj.com/sitemap_index.xml"
+    page: "https://allinclusivenj.com/page-sitemap.xml"
+    posts: "https://allinclusivenj.com/post-sitemap.xml"
+    wordpress_pattern_collection: "https://allinclusivenj.com/gblocks_pattern_collections-sitemap.xml"
+    wordpress_authors: "https://allinclusivenj.com/author-sitemap.xml"
+  competitors_reviewed:
+    - name: "Skydell Contracting"
+      url: "https://www.skydell.com/"
+      observed_strengths: ["project photography", "specialist kitchen and bath positioning", "prominent phone CTA", "detailed local service-area list"]
+      response: "Use a similarly visible proof-and-contact path while differentiating with the client's broader project mix, woman-owned leadership, and verified awards."
+    - name: "Symmetrical Wolf"
+      url: "https://www.symmetricalwolf.com/county/somerset-county-nj/branchburg-nj"
+      observed_strengths: ["Branchburg-specific landing page", "step-by-step inquiry journey", "trust signals", "owner introduction"]
+      response: "Make location relevance, named process steps, and leadership visible; do not reuse its claims, offer, warranty, reviews, or copy."
+    - name: "Bellari Home Remodeling"
+      url: "https://www.bellarinj.com/"
+      observed_strengths: ["long operating history", "showroom and product-led services", "large project and testimonial sections", "promotional CTA modules"]
+      response: "Position All Inclusive around its own service range and personal project coordination; do not imply a showroom or product lines that have not been verified."
+    - name: "Magnolia Home Remodeling Group"
+      url: "https://magnoliahomeremodeling.com/service-areas/somerset-county-nj/branchburg/general-contractor/"
+      observed_strengths: ["town/service landing pages", "wide interior and exterior scope"]
+      response: "Retain valuable legacy local URLs but replace repetitive keyword copy with useful, accurate location-specific information."
+
+stack:
+  framework: "Next.js 16 App Router"
+  language: "TypeScript, strict mode"
+  ui: "React 19 and Tailwind CSS 4"
+  cms: "Sanity Content Lake and embedded Sanity Studio"
+  next_sanity: "next-sanity 13 or later; use the current stable release compatible with Next.js 16"
+  rich_text: "Sanity Portable Text rendered with @portabletext/react"
+  form_leads: "PostgreSQL through Drizzle ORM; separate from editorial CMS content"
+  media: "Sanity image assets with focal-point cropping and descriptive alt text"
+  deployment: "Node-compatible Next.js hosting; production origin configured in Sanity CORS"
+  rendering:
+    marketing_pages: "Server Components with static generation or ISR"
+    content_refresh: "Tag-based revalidation or next-sanity Live Content API after project credentials and tokens are configured"
+    draft_preview: "Next.js Draft Mode, protected by a server-only Sanity read token"
+    studio: "Embedded at /studio; disable indexing and keep access behind Sanity authentication"
+
+information_architecture:
+  global_navigation:
+    primary:
+      - { label: "Services", children: ["Kitchen Remodels", "Bathroom Remodels", "Home Additions", "Decks & Porches", "General Contracting"] }
+      - { label: "Our Work", href: "/portfolio/" }
+      - { label: "About", href: "/about/" }
+      - { label: "Insights", href: "/news/" }
+      - { label: "Contact", href: "/contact/" }
+    persistent_conversion: "Request a consultation"
+    phone: "+1-732-484-9008"
+  routes:
+    - { path: "/", type: "home", cms: "homePage", seo: "local business landing page" }
+    - { path: "/kitchen-remodels/", type: "service", cms: "service", source: "sitemap" }
+    - { path: "/bathroom-remodels/", type: "service", cms: "service", source: "sitemap" }
+    - { path: "/residential-additions/", type: "service", cms: "service", source: "sitemap" }
+    - { path: "/decks/", type: "service", cms: "service", source: "sitemap" }
+    - { path: "/your-trusted-general-contractor-in-central-nj/", type: "service-area", cms: "landingPage", source: "sitemap" }
+    - { path: "/portfolio/", type: "project-index", cms: "project", source: "sitemap" }
+    - { path: "/projects/[slug]/", type: "project-detail", cms: "project", status: "recommended expansion; publish only when project facts and approved photos exist" }
+    - { path: "/about/", type: "company", cms: "aboutPage", source: "sitemap" }
+    - { path: "/awards/", type: "awards", cms: "award", source: "sitemap" }
+    - { path: "/careers/", type: "careers", cms: "careerPage", source: "sitemap" }
+    - { path: "/contact/", type: "lead-form", cms: "siteSettings", source: "sitemap" }
+    - { path: "/news/", type: "article-index", cms: "article", source: "sitemap" }
+    - { path: "/news/[slug]/", type: "article-detail", cms: "article", source: "post-sitemap" }
+    - { path: "/home-remodeling-in-branchburg/", type: "service-area", cms: "landingPage", source: "sitemap" }
+    - { path: "/home-remodeling-home-improvement-services-in-somerset-county-nj/", type: "service-area", cms: "landingPage", source: "sitemap" }
+    - { path: "/accessibility-statement/", type: "legal", cms: "legalPage", source: "sitemap", note: "Preserve route; reconcile the phone number and re-review accessibility wording." }
+    - { path: "/privacy-policy/", type: "legal", cms: "legalPage", source: "sitemap", note: "Source response did not expose complete policy body; import verified legal copy, do not invent it." }
+    - { path: "/terms-conditions/", type: "legal", cms: "legalPage", source: "sitemap", note: "Source response did not expose complete terms body; import verified legal copy, do not invent it." }
+    - { path: "/cookie-policy/", type: "legal", cms: "legalPage", source: "sitemap", note: "Source response did not expose complete cookie policy body; import verified legal copy, do not invent it." }
+    - { path: "/sitemap.xml", type: "technical", source: "generated from published Sanity content" }
+    - { path: "/robots.txt", type: "technical", source: "Next.js metadata route; block /studio/ and /api/" }
+    - { path: "/studio/[[...tool]]/", type: "cms", source: "embedded Sanity Studio; noindex" }
+  article_slugs_from_post_sitemap:
+    - "second-story-addition-vs-moving-to-a-bigger-home-whats-the-right-choice-for-you"
+    - "renovate-or-move-the-3-factors-to-consider-all-inclusive-construction"
+    - "home-renovation-trends-in-nj-for-2026-what-homeowners-are-asking-for-now"
+    - "what-nj-homeowners-want-in-a-modern-kitchen-2026-guide"
+    - "geraldine-smith-with-congressman-josh-gottheimer-nj-5"
+    - "nahb-emerging-leaders-talk-housing-with-lawmakers-on-capitol-hill"
+    - "kitchen-remodeling-costs-in-new-jersey-what-homeowners-should-know"
+    - "7-smart-design-ideas-for-small-bathroom-remodels-in-nj"
+  legacy_routes:
+    - { source: "/category/uncategorized/", destination: "/news/", status: 301, reason: "WordPress category archive is not a differentiated destination." }
+    - { source: "/author/seoteam/", destination: "/news/", status: 301, reason: "Do not expose SEO vendor archives as authored content." }
+    - { source: "/author/kyleyondermooncreative-com/", destination: "/news/", status: 301, reason: "Review archive links before redirecting; retain byline credit where contractually required." }
+    - { source: "/gblocks_pattern_collections/local-patterns/", destination: null, status: 410, reason: "WordPress internal block-pattern collection, not a public marketing page." }
+
+sanity:
+  studio_base_path: "/studio"
+  environment:
+    public:
+      - "NEXT_PUBLIC_SANITY_PROJECT_ID"
+      - "NEXT_PUBLIC_SANITY_DATASET"
+      - "NEXT_PUBLIC_SANITY_STUDIO_URL"
+    server_only:
+      - "SANITY_API_READ_TOKEN"
+      - "SANITY_REVALIDATE_SECRET"
+  document_models:
+    siteSettings:
+      singleton: true
+      fields: ["brandName", "logo", "phone", "email", "registrationNumbers", "serviceAreaSummary", "socialLinks", "footerNote", "defaultSeo"]
+    homePage:
+      singleton: true
+      fields: ["eyebrow", "headline", "intro", "heroImage", "heroImageAlt", "primaryCta", "secondaryCta", "proofPoints", "featuredServices", "featuredProjects", "testimonialReferences", "featuredArticles", "seo"]
+    service:
+      fields: ["title", "slug", "shortDescription", "heroImage", "heroAlt", "intro", "benefits", "scopeItems", "processSteps", "faq", "projectReferences", "testimonialReferences", "serviceAreaReferences", "seo", "published"]
+    project:
+      fields: ["title", "slug", "serviceCategory", "locationLabel", "summary", "challenge", "approach", "result", "gallery", "coverImage", "altText", "completionDate", "featured", "seo", "approvedForMarketing"]
+    article:
+      fields: ["title", "slug", "excerpt", "heroImage", "heroAlt", "bodyPortableText", "authorReference", "categories", "publishedAt", "updatedAt", "relatedServices", "seo", "legacyUrl"]
+    award:
+      fields: ["title", "year", "awardingOrganization", "projectLabel", "image", "altText", "sourceUrl", "verified"]
+    testimonial:
+      fields: ["quote", "attribution", "source", "sourceUrl", "serviceReference", "permissionConfirmed", "featured"]
+    serviceArea:
+      fields: ["name", "slug", "county", "region", "intro", "serviceReferences", "localProof", "faq", "seo", "coverageConfirmed"]
+    person:
+      fields: ["name", "role", "portrait", "portraitAlt", "bio", "credentials", "socialLinks"]
+    legalPage:
+      fields: ["title", "slug", "bodyPortableText", "lastReviewedAt", "reviewedBy", "seoNoIndex"]
+    careerPage:
+      fields: ["intro", "openRoles", "applicationEmail", "benefits", "seo"]
+  reusable_objects:
+    seo: ["metaTitle", "metaDescription", "canonicalUrl", "socialImage", "noIndex"]
+    cta: ["label", "href", "style"]
+    faqItem: ["question", "answer"]
+    galleryItem: ["image", "alt", "caption", "category"]
+  editorial_rules:
+    - "Keep facts, awards, locations, license/registration language, and years-of-experience claims source-backed and owner-approved."
+    - "Never publish a testimonial without attribution permission and a traceable source."
+    - "Every Sanity image must have descriptive alt text; do not preserve keyword-stuffed alt text."
+    - "Use the client's own project photography; confirm usage rights and project/location labels before publishing."
+    - "Legal policy wording is maintained only after review by the client's legal adviser."
+
+content_delivery:
+  client: "next-sanity createClient in server-only module; published content uses CDN and a pinned API version"
+  query_strategy: "Typed GROQ constants; fetch only fields needed by each route; keep local typed fixtures as a safe preview fallback until project ID and dataset are configured."
+  cache_strategy: "Static/ISR for public pages; on-demand content revalidation after publishing; Draft Mode is uncached and server-token protected."
+  image_strategy: "Sanity image URL builder with responsive width, quality, hotspot crop, and per-image alt; import original WordPress media only after ownership/permission check."
+  rendering:
+    homepage: "Server Component; CMS homePage, then approved local fallback"
+    services_and_locations: "Dynamic route from published service/landingPage documents with generateStaticParams for known slugs"
+    articles: "Published article documents only; preserve current /news/[slug]/ URL shape"
+    studio: "NextStudio under /studio; Studio schema and route are excluded from public sitemap"
+
+postgresql:
+  responsibility: "Store private lead inquiries only; Sanity remains the source of truth for public/editorial content."
+  drizzle_table:
+    name: "contact_leads"
+    columns:
+      - "id: serial primary key"
+      - "name: varchar(120), required"
+      - "email: varchar(254), required"
+      - "phone: varchar(40), optional"
+      - "projectType: varchar(80), required"
+      - "location: varchar(120), optional"
+      - "budget: varchar(80), optional"
+      - "timeline: varchar(80), optional"
+      - "hasPlans: boolean, nullable"
+      - "message: text, optional"
+      - "consent: boolean, required"
+      - "sourcePath: varchar(300), optional"
+      - "createdAt: timestamptz, default now"
+  api:
+    endpoint: "POST /api/leads"
+    protections: ["server-side validation", "honeypot", "payload length limits", "consent required", "no secrets in client", "add rate limit and CAPTCHA/Turnstile before public launch"]
+    post_submit: "Return a clear success state; production should additionally notify the client via a server-side email provider."
+
+seo:
+  canonical_policy: "Keep current high-value public slugs as canonical; trailing slash convention is consistent."
+  metadata: "Unique title/description per route, social image, canonical URL, Open Graph, Twitter metadata."
+  structured_data:
+    - "GeneralContractor or HomeAndConstructionBusiness only with verified facts"
+    - "Organization identity and service catalog"
+    - "BreadcrumbList on service, project, article, and location routes"
+    - "Article on editorial pages"
+  caution: "Do not add self-serving LocalBusiness review markup for first-party testimonials; do not publish unverified prices, star ratings, or service-area claims."
+  technical:
+    sitemap: "Generate only published, canonical, indexable pages and articles."
+    robots: "Disallow /api/ and /studio/; allow public content."
+    redirects: "Preserve existing service, portfolio, news, and legal URLs; map WordPress-only archives according to legacy_routes."
+
+accessibility_and_design:
+  visual_direction: "Warm, editorial, confident residential design-build brand; ivory surfaces, deep evergreen, muted brass accents, large project photography, generous spacing, readable serif display type."
+  principles:
+    - "Mobile-first layout and navigation"
+    - "Semantic landmarks and one clear h1 per page"
+    - "Visible keyboard focus and skip link"
+    - "Labels and helpful error messaging for every form field"
+    - "Accessible contrast, reduced-motion support, descriptive link labels"
+    - "Gallery images lazy-loaded with explicit dimensions and alt text"
+    - "No auto-rotating carousel required for core content"
+
+migration:
+  preserve_urls: true
+  phase_1:
+    - "Export both WordPress page and post sitemaps, media metadata, SEO metadata, page bodies, redirects, and form fields."
+    - "Import service pages, company story, awards, contact details, portfolio images, and eight discovered articles into Sanity."
+    - "Rebuild all high-value routes and compare rendered pages, image assets, links, and metadata against the crawl."
+  phase_2:
+    - "Write redirects for non-canonical archives and any approved slug changes."
+    - "Connect the Sanity project, set public project/dataset variables and server-side viewer token, then test published and draft perspectives."
+    - "Enable consent-compliant analytics and server-side lead notifications after privacy review."
+  acceptance_checks:
+    - "Every sitemap URL is mapped to a kept route, a reviewed redirect, or an intentional 410."
+    - "All project images have confirmed rights, accurate project labels, and useful alt text."
+    - "Contact submission validates, persists through Drizzle, and displays success/error states."
+    - "Public routes build without Sanity secrets; /studio is not indexable."
+    - "Mobile navigation, service links, filters, form, privacy links, sitemap, and robots routes work."
+    - "No placeholder legal text, fabricated awards, fabricated reviews, unsupported prices, or unsupported service claims remain." 
